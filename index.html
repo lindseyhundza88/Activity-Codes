@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SLS Paralegal Activity Codes</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #e8edf2;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+    font-size: 13px;
+    color: #333;
+    padding: 20px 16px 40px;
+  }
+
+  /* ── Page header ── */
+  .page-header {
+    background: #1e4da1;
+    border-radius: 4px 4px 0 0;
+    padding: 12px 18px;
+    max-width: 1000px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .page-header h1 { font-size: 14px; font-weight: 700; color: #fff; }
+  .page-header .count-badge {
+    font-size: 11px; font-weight: 600;
+    background: rgba(255,255,255,0.18);
+    color: #fff; padding: 3px 10px;
+    border-radius: 10px;
+  }
+
+  .page-subheader {
+    background: #c8d8e8;
+    border: 1px solid #a8b8cc;
+    border-top: none;
+    border-radius: 0 0 4px 4px;
+    padding: 10px 18px 12px;
+    max-width: 1000px;
+    margin-bottom: 18px;
+  }
+  .sub-rule-list {
+    list-style: none; padding: 0;
+    display: flex; flex-direction: column; gap: 4px;
+    margin-top: 4px;
+  }
+  .sub-rule-list li {
+    font-size: 12px; color: #222; line-height: 1.45;
+    padding-left: 16px; position: relative;
+  }
+  .sub-rule-list li::before {
+    content: '•'; position: absolute; left: 0;
+    color: #1e4da1; font-weight: 700;
+  }
+  .sub-rule-list li strong { color: #1e4da1; }
+
+  /* ── Two-column layout: dropdown mockup + tip ── */
+  .top-row {
+    display: flex;
+    gap: 18px;
+    max-width: 1000px;
+    margin-bottom: 18px;
+    align-items: flex-start;
+  }
+
+  /* Dropdown mockup */
+  .dropdown-col { flex: 0 0 300px; }
+  .dropdown-col .col-label {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.07em;
+    text-transform: uppercase; background: #1e4da1; color: #fff;
+    padding: 6px 10px; border-radius: 4px 4px 0 0;
+  }
+  .form-shell {
+    background: #fff; border: 1px solid #bbb; border-top: none;
+  }
+  .form-topbar {
+    background: #1e4da1; color: #fff;
+    font-size: 12px; font-weight: 600;
+    padding: 6px 10px;
+    display: flex; justify-content: space-between;
+  }
+  .form-fields { padding: 8px 10px; }
+  .form-row {
+    display: flex; align-items: center;
+    padding: 3px 0; border-bottom: 1px solid #f4f4f4;
+    min-height: 22px; gap: 6px;
+  }
+  .form-row:last-child { border-bottom: none; }
+  .form-label { font-size: 11px; color: #555; width: 68px; flex-shrink: 0; text-align: right; padding-right: 6px; }
+  .f-input { display: inline-block; background: #f5f5f5; border: 1px solid #ccc; border-radius: 2px; padding: 1px 6px; font-size: 11px; color: #333; min-width: 80px; }
+  .f-input.search { background: #e8edf5; border-color: #b0bcd0; color: #555; }
+  .f-select-box {
+    border: 1px solid #b0bcd0; border-radius: 2px;
+    background: #fff; width: 100%;
+    margin: 6px 10px 8px;
+  }
+  .f-select-highlight {
+    background: #1e4da1; color: #fff;
+    font-size: 11px; padding: 4px 8px;
+  }
+  .f-select-item {
+    font-size: 11px; color: #222;
+    padding: 3px 8px;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .f-select-item:last-child { border-bottom: none; }
+  .f-select-item.active { background: #e8edf5; color: #1e4da1; }
+  .scrollbar-hint {
+    text-align: center; font-size: 10px; color: #aaa;
+    padding: 4px; border-top: 1px solid #eee;
+    background: #fafafa;
+  }
+
+  /* Tip card */
+  .tip-col { flex: 1; }
+  .tip-card {
+    background: #fff; border: 1px solid #bbb; border-radius: 4px; overflow: hidden;
+  }
+  .tip-card-header {
+    background: #1e4da1; color: #fff;
+    font-size: 12px; font-weight: 700;
+    padding: 7px 12px;
+  }
+  .tip-card-body { padding: 12px 14px; }
+  .tip-step {
+    display: flex; gap: 10px; align-items: flex-start;
+    padding: 8px 0; border-bottom: 1px solid #f0f0f0;
+  }
+  .tip-step:last-child { border-bottom: none; }
+  .tip-num {
+    flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%;
+    background: #1e4da1; color: #fff;
+    font-size: 11px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .tip-text { font-size: 12px; color: #222; line-height: 1.5; padding-top: 2px; }
+  .tip-text strong { color: #1e4da1; }
+  .tip-text .code-pill {
+    display: inline-block;
+    background: #e8edf5; border: 1px solid #b0bcd0;
+    border-radius: 2px; font-size: 10px; font-weight: 600;
+    padding: 1px 6px; color: #1e4da1;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.02em;
+  }
+
+  .tip-alert {
+    background: #fff8dc; border: 1px solid #e6c84a;
+    border-radius: 3px; padding: 8px 12px;
+    font-size: 11px; color: #5a4500; line-height: 1.5;
+    margin-top: 10px;
+  }
+  .tip-alert strong { color: #3a2d00; }
+
+  /* ── Search bar ── */
+  .search-row {
+    max-width: 1000px;
+    display: flex; gap: 10px; align-items: center;
+    margin-bottom: 10px;
+  }
+  .search-input {
+    flex: 1; padding: 7px 12px;
+    border: 1px solid #bbb; border-radius: 3px;
+    font-size: 12px; color: #333;
+    background: #fff;
+    outline: none;
+  }
+  .search-input:focus { border-color: #1e4da1; }
+  .filter-btns { display: flex; gap: 6px; flex-wrap: wrap; }
+  .filter-btn {
+    font-size: 10px; font-weight: 600;
+    padding: 4px 10px; border-radius: 10px;
+    border: 1px solid #bbb; background: #f0f0f0;
+    color: #555; cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+  }
+  .filter-btn:hover, .filter-btn.active {
+    background: #1e4da1; color: #fff; border-color: #1e4da1;
+  }
+  .result-count { font-size: 11px; color: #888; white-space: nowrap; }
+
+  /* ── Code table ── */
+  .table-wrap {
+    max-width: 1000px;
+    background: #fff; border: 1px solid #bbb; border-radius: 4px;
+    overflow: hidden;
+  }
+  .code-table { width: 100%; border-collapse: collapse; }
+  .code-table thead tr { background: #1e4da1; }
+  .code-table th {
+    font-size: 11px; font-weight: 700; color: #fff;
+    padding: 8px 12px; text-align: left;
+    letter-spacing: 0.04em;
+  }
+  .code-table th.num-col { width: 50px; text-align: center; }
+  .code-table th.code-col { width: 230px; }
+
+  .code-table tbody tr { border-bottom: 1px solid #eee; }
+  .code-table tbody tr:last-child { border-bottom: none; }
+  .code-table tbody tr:hover { background: #f5f8fc; }
+  .code-table tbody tr.hidden { display: none; }
+
+  .code-table td { padding: 8px 12px; vertical-align: top; font-size: 12px; }
+  .code-table td.num-col { text-align: center; color: #aaa; font-size: 11px; font-weight: 600; }
+
+  .code-pill-cell {
+    font-family: 'Courier New', monospace;
+    font-size: 10.5px; font-weight: 700;
+    color: #1e4da1;
+    background: #e8edf5; border: 1px solid #b0bcd0;
+    border-radius: 2px; padding: 2px 7px;
+    display: inline-block;
+    white-space: nowrap;
+  }
+  .task-name {
+    font-weight: 600; color: #111;
+    font-size: 12px; margin-bottom: 2px;
+  }
+  .when-text { font-size: 11.5px; color: #444; line-height: 1.5; }
+  .cat-tag {
+    display: inline-block; font-size: 9px; font-weight: 700;
+    padding: 1px 7px; border-radius: 10px;
+    letter-spacing: 0.05em; vertical-align: middle;
+    margin-left: 5px;
+  }
+  .cat-case   { background: #e8edf5; color: #1e4da1; border: 1px solid #b0bcd0; }
+  .cat-docs   { background: #e8f5e8; color: #1a5a1a; border: 1px solid #80c080; }
+  .cat-comms  { background: #fef3d0; color: #7a5000; border: 1px solid #e0c060; }
+  .cat-settle { background: #f0e8f8; color: #5a1a8a; border: 1px solid #c090d0; }
+  .cat-admin  { background: #f5f5f5; color: #555;    border: 1px solid #ccc; }
+  .cat-medical{ background: #fde8e8; color: #8a2020; border: 1px solid #e08080; }
+
+  .warn-box {
+    background: #fff0f0; border: 1px solid #e09090;
+    border-radius: 2px; padding: 4px 8px;
+    font-size: 11px; color: #6a1a1a;
+    margin-top: 4px; line-height: 1.4;
+  }
+  .note-box {
+    background: #fff8dc; border: 1px solid #e0c860;
+    border-radius: 2px; padding: 4px 8px;
+    font-size: 11px; color: #5a4500;
+    margin-top: 4px; line-height: 1.4;
+  }
+
+  .no-results {
+    padding: 24px; text-align: center;
+    font-size: 12px; color: #999;
+    display: none;
+  }
+</style>
+</head>
+<body>
+
+<!-- Search + filter -->
+<div class="search-row">
+  <input class="search-input" type="text" id="searchInput" placeholder="Search codes or descriptions…" oninput="filterTable()">
+  <div class="filter-btns">
+    <button class="filter-btn active" onclick="filterCat(this,'all')">All</button>
+    <button class="filter-btn" onclick="filterCat(this,'case')">Case Work</button>
+    <button class="filter-btn" onclick="filterCat(this,'docs')">Docs &amp; Filings</button>
+    <button class="filter-btn" onclick="filterCat(this,'medical')">Medical</button>
+    <button class="filter-btn" onclick="filterCat(this,'comms')">Comms</button>
+    <button class="filter-btn" onclick="filterCat(this,'settle')">Settlement</button>
+    <button class="filter-btn" onclick="filterCat(this,'admin')">Admin</button>
+  </div>
+  <span class="result-count" id="resultCount">29 codes</span>
+</div>
+
+<!-- Code table -->
+<div class="table-wrap">
+  <table class="code-table" id="codeTable">
+    <thead>
+      <tr>
+        <th class="num-col">#</th>
+        <th class="code-col">Activity Code</th>
+        <th>Task Name &amp; When to Use</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <tr data-cat="case" data-search="001 initial case review intake sol injury tier litify">
+        <td class="num-col">001</td>
+        <td><span class="code-pill">SLS_Paralegal_001</span></td>
+        <td>
+          <div class="task-name">Initial Case Review <span class="cat-tag cat-case">Case Work</span></div>
+          <div class="when-text">Review of intake or new matter information. Includes SOL Setting, Injury Tier, Intake and review of client information based on Intake. May also include gathering and inputting initial information in Litify, and review completeness of intake or new matter record.</div>
+          <div class="note-box">⚠ DO NOT use Data Clean Up for initial case review — log it here instead.</div>
+        </td>
+      </tr>
+
+      <tr data-cat="comms" data-search="002 client communication inbound outreach call phone email vm text">
+        <td class="num-col">002</td>
+        <td><span class="code-pill">SLS_Paralegal_002</span></td>
+        <td>
+          <div class="task-name">Client Communication <span class="cat-tag cat-comms">Comms</span></div>
+          <div class="when-text">Response to INBOUND client communication ONLY. Includes time on the phone with a client and time reviewing and responding to client emails. Use when a client call is in response to M&amp;M Case Staff outreach (e.g. VM, text) OR when unprompted.</div>
+          <div class="warn-box">⚠ SHOULD NOT BE USED FOR OUTBOUND OUTREACH. For outbound, select the code matching the underlying reason for the call (e.g. CQ Retrieval, Medical Record Request). THIS IS SO WE HAVE VISIBILITY INTO INBOUND CLIENT CALLS.</div>
+        </td>
+      </tr>
+
+      <tr data-cat="case" data-search="003 case audit general review missing documents injuries tiers proof turn down">
+        <td class="num-col">003</td>
+        <td><span class="code-pill">SLS_Paralegal_003</span></td>
+        <td>
+          <div class="task-name">Case Audit <span class="cat-tag cat-case">Case Work</span></div>
+          <div class="when-text">General review of matter information (excluding initial case review) to identify missing information / documents; validate client injuries and tiers, proof of injury, proof of usage, assess settlement readiness, evaluate client for Turn Down, etc.</div>
+        </td>
+      </tr>
+
+      <tr data-cat="case" data-search="004 cq retrieval hipaa outreach missing questionnaire documents">
+        <td class="num-col">004</td>
+        <td><span class="code-pill">SLS_Paralegal_004</span></td>
+        <td>
+          <div class="task-name">CQ Retrieval <span class="cat-tag cat-case">Case Work</span></div>
+          <div class="when-text">Outreach to clients related to CQ or HIPAA retrieval. Includes BOTH outreach to clients with no CQ on file AND outreach to obtain missing or updated information or other documents.</div>
+        </td>
+      </tr>
+
+      <tr data-cat="case" data-search="005 cq review questionnaire validation sol litify docufree">
+        <td class="num-col">005</td>
+        <td><span class="code-pill">SLS_Paralegal_005</span></td>
+        <td>
+          <div class="task-name">CQ Review <span class="cat-tag cat-case">Case Work</span></div>
+          <div class="when-text">Review of submitted Questionnaire, Validation of Client info, Setting SOLs based on CQ. Includes updating Litify Matters with information from CQ, whether received electronically or via Docufree.</div>
+        </td>
+      </tr>
+
+      <tr data-cat="medical" data-search="006 medical record request follow up litify sf180 dd2870 hipaa outreach">
+        <td class="num-col">006</td>
+        <td><span class="code-pill">SLS_Paralegal_006</span></td>
+        <td>
+          <div class="task-name">Medical Record Request/Follow Up <span class="cat-tag cat-medical">Medical</span></div>
+          <div class="when-text">Submission of MR record requests via Litify. Creation of roles, other information in Litify required to submit requests. Includes client OUTREACH and other activities to gather additional information required to request medical records (e.g. SF180 or DD2870 forms) beyond HIPAA and CQ.</div>
+        </td>
+      </tr>
+
+      <tr data-cat="medical" data-search="007 medical record review history tab litify summary exposure injury">
+        <td class="num-col">007</td>
+        <td><span class="code-pill">SLS_Paralegal_007</span></td>
+        <td>
+          <div class="task-name">Medical Record Review <span class="cat-tag cat-medical">Medical</span></div>
+          <div class="when-text">Review of Medical Records, updating the Medical History tab in Litify, creation of Medical record summaries, review of other documents required to validate and prove usage / exposure and injury of client.</div>
+        </td>
+      </tr>
+
+      <tr data-cat="docs" data-search="008 complaint prep draft review forms locates">
+        <td class="num-col">008</td>
+        <td><span class="code-pill">SLS_Paralegal_008</span></td>
+        <td>
+          <div class="task-name">Complaint Prep/Draft/Review <span class="cat-tag cat-docs">Docs &amp; Filings</span></div>
+          <div class="when-text">Preparation of complaints, including filling in forms as well as reaching out to clients and/or running Locates to gather required information.</div>
+        </td>
+      </tr>
+
+      <tr data-cat="docs" data-search="009 complaint filing service portal">
+        <td class="num-col">009</td>
+        <td><span class="code-pill">SLS_Paralegal_009</span></td>
+        <td>
+          <div class="task-name">Complaint Filing/Service <span class="cat-tag cat-docs">Docs &amp; Filings</span></div>
+          <div class="when-text">Filing or submitting to portal complaints and other required court submissions (e.g. census form, tolling agreement, PFS, Settlement package, Proof of Claim, etc.).</div>
+        </td>
+      </tr>
+
+      <tr data-cat="docs" data-search="010 pfs prep draft review plaintiff fact sheet forms locates deficiencies">
+        <td class="num-col">010</td>
+        <td><span class="code-pill">SLS_Paralegal_010</span></td>
+        <td>
+          <div class="task-name">PFS Prep/Draft/Review <span class="cat-tag cat-docs">Docs &amp; Filings</span></div>
+          <div class="when-text">Preparation of PFS docs, including filling in forms, correcting deficiencies, and reaching out to clients and/or running Locates to gather required information.</div>
+        </td>
+      </tr>
+
+      <tr data-cat="docs" data-search="011 pfs submission service filing portal">
+        <td class="num-col">011</td>
+        <td><span class="code-pill">SLS_Paralegal_011</span></td>
+        <td>
+          <div class="task-name">PFS Submission/Service <span class="cat-tag cat-docs">Docs &amp; Filings</span></div>
+          <div class="when-text">Submission or service of completed PFS documents to the appropriate portal or party.</div>
+        </td>
+      </tr>
+
+      <tr data-cat="docs" data-search="012 tolling census doc prep review forms locates deficiencies">
+        <td class="num-col">012</td>
+        <td><span class="code-pill">SLS_Paralegal_012</span></td>
+        <td>
+          <div class="task-name">Tolling/Census Doc Prep/Review <span class="cat-tag cat-docs">Docs &amp; Filings</span></div>
+          <div class="when-text">Preparation of tolling agreements, census forms, including filling in forms as well as reaching out to clients and/or running Locates to gather required information.</div>
+        </td>
+      </tr>
+
+      <tr data-cat="docs" data-search="013 misc prep draft review court submissions proof of claim poc bankruptcy">
+        <td class="num-col">013</td>
+        <td><span class="code-pill">SLS_Paralegal_013</span></td>
+        <td>
+          <div class="task-name">Misc. Prep/Draft/Review <span class="cat-tag cat-docs">Docs &amp; Filings</span></div>
+          <div class="when-text">Preparation of court submissions other than PFS or Census Forms, including filling in forms, correcting deficiencies, and reaching out to clients and/or running Locates. <em>Example: Drafting/reviewing/filing Proof of Claim (POC) forms for Defendant bankruptcy filings.</em></div>
+        </td>
+      </tr>
+
+      <tr data-cat="docs" data-search="014 misc filings submissions portal census tolling pfs settlement proof claim">
+        <td class="num-col">014</td>
+        <td><span class="code-pill">SLS_Paralegal_014</span></td>
+        <td>
+          <div class="task-name">Misc. Filings/Submissions <span class="cat-tag cat-docs">Docs &amp; Filings</span></div>
+          <div class="when-text">Filing or submitting to portal complaints and other required court submissions (e.g. census form, tolling agreement, PFS, Settlement package, Proof of Claim, etc.).</div>
+        </td>
+      </tr>
+
+      <tr data-cat="case" data-search="015 bellwether identification evaluation selection candidate">
+        <td class="num-col">015</td>
+        <td><span class="code-pill">SLS_Paralegal_015</span></td>
+        <td>
+          <div class="task-name">Bellwether Identification <span class="cat-tag cat-case">Case Work</span></div>
+          <div class="when-text">Identification and evaluation of matters and matter information for selection as a potential bellwether candidate.</div>
+        </td>
+      </tr>
+
+      <tr data-cat="admin" data-search="016 td processing turn down letter finance request close matter">
+        <td class="num-col">016</td>
+        <td><span class="code-pill">SLS_Paralegal_016</span></td>
+        <td>
+          <div class="task-name">TD Processing <span class="cat-tag cat-admin">Admin</span></div>
+          <div class="when-text">Sending client TD letter, processing Finance request to close matter that has been turned down.</div>
+        </td>
+      </tr>
+
+      <tr data-cat="admin" data-search="017 data clean up litify display names statuses questionnaire medical records file number">
+        <td class="num-col">017</td>
+        <td><span class="code-pill">SLS_Paralegal_017</span></td>
+        <td>
+          <div class="task-name">Data Clean Up <span class="cat-tag cat-admin">Admin</span></div>
+          <div class="when-text">Update of information in Litify or Spreadsheets. Includes updates to Display Names, Statuses, Questionnaire Status, Medical records status, Injury Status, File #, and other Litify fields, etc.</div>
+          <div class="warn-box">⚠ DO NOT USE when conducting initial case review — log that under <em>Initial Case Review</em> (001).</div>
+        </td>
+      </tr>
+
+      <tr data-cat="comms" data-search="018 case status meetings calls leads team attorney weekly updates">
+        <td class="num-col">018</td>
+        <td><span class="code-pill">SLS_Paralegal_018</span></td>
+        <td>
+          <div class="task-name">Case Status Mtgs/Calls with Leads/Team <span class="cat-tag cat-comms">Comms</span></div>
+          <div class="when-text">Check-ins with Team Leads/Case Ops Managers or weekly calls with Attorney/Lead Paralegal related to case work up, updates, etc.</div>
+        </td>
+      </tr>
+
+      <tr data-cat="case" data-search="019 litigation support prep bellwether phv pro hac vice rule 707 discovery deposition ecf science committee">
+        <td class="num-col">019</td>
+        <td><span class="code-pill">SLS_Paralegal_019</span></td>
+        <td>
+          <div class="task-name">Litigation Support/Prep <span class="cat-tag cat-case">Case Work</span></div>
+          <div class="when-text">Activities related to support for bellwether trials, including PHV (pro hac vice), Rule 707 discovery, deposition-prep, Review ECF Notifications, Science Committee related activities, etc.</div>
+          <div class="warn-box">⚠ REACH OUT TO LEAD ATTORNEY OR NEFF BEFORE SELECTING THIS ACTIVITY.</div>
+        </td>
+      </tr>
+
+      <tr data-cat="comms" data-search="020 nok research outreach next of kin locates death certificate date of death">
+        <td class="num-col">020</td>
+        <td><span class="code-pill">SLS_Paralegal_020</span></td>
+        <td>
+          <div class="task-name">NOK Research/Outreach <span class="cat-tag cat-comms">Comms</span></div>
+          <div class="when-text">Identification of and outreach to NOK to serve as representative of client. Includes running locates, obtaining death certificates, and projects related to determining date of death.</div>
+        </td>
+      </tr>
+
+      <tr data-cat="case" data-search="021 probate estate trust outreach third parties firms nok">
+        <td class="num-col">021</td>
+        <td><span class="code-pill">SLS_Paralegal_021</span></td>
+        <td>
+          <div class="task-name">Probate/Estate/Trust <span class="cat-tag cat-case">Case Work</span></div>
+          <div class="when-text">Outreach to and working with clients, third parties, or other firms regarding estates and probate.</div>
+          <div class="warn-box">⚠ DOES NOT include outreach to potential NOKs or research to determine legal NOK.</div>
+        </td>
+      </tr>
+
+      <tr data-cat="case" data-search="022 case value enhancement research tort evidence strengthen increase">
+        <td class="num-col">022</td>
+        <td><span class="code-pill">SLS_Paralegal_022</span></td>
+        <td>
+          <div class="task-name">Case Value/Enhancement Research <span class="cat-tag cat-case">Case Work</span></div>
+          <div class="when-text">Tort-specific projects to gather information or evidence that could strengthen or increase the potential value of a client's claim.</div>
+        </td>
+      </tr>
+
+      <tr data-cat="settle" data-search="023 settlement prep draft review package portal deficiencies liens bankruptcy claim forms locates">
+        <td class="num-col">023</td>
+        <td><span class="code-pill">SLS_Paralegal_023</span></td>
+        <td>
+          <div class="task-name">Settlement Prep/Draft/Review <span class="cat-tag cat-settle">Settlement</span></div>
+          <div class="when-text">Preparation of settlement packages, including submitting forms/data to settlement portal and curing deficiencies. INCLUDES outreach to clients to retrieve and complete forms needed to participate in a settlement (e.g. governmental and private liens, personal bankruptcy, claim forms). Includes running locates as part of settlement package prep process.</div>
+        </td>
+      </tr>
+
+      <tr data-cat="settle" data-search="024 settlement distribution closing statement disbursing funds clients payment status">
+        <td class="num-col">024</td>
+        <td><span class="code-pill">SLS_Paralegal_024</span></td>
+        <td>
+          <div class="task-name">Settlement Distribution <span class="cat-tag cat-settle">Settlement</span></div>
+          <div class="when-text">Preparation of Case Closing statements and activities related to disbursing funds to clients. Includes communication with clients regarding status of settlement payment and details of Closing Statement, as well as running Locates as part of disbursement process.</div>
+        </td>
+      </tr>
+
+      <tr data-cat="admin" data-search="025 finance internal billing expense attorney reimbursement qsf allocation litify">
+        <td class="num-col">025</td>
+        <td><span class="code-pill">SLS_Paralegal_025</span></td>
+        <td>
+          <div class="task-name">Finance <span class="cat-tag cat-admin">Admin</span></div>
+          <div class="when-text">Internal activity related to Finance queries, billing statements, expense allocations, attorney reimbursements, etc. Includes internal communications with finance team as well as usage of Litify. Includes external communications with QSF (if applicable).</div>
+          <div class="warn-box">⚠ DOES NOT include medical record invoicing approval. DOES NOT include preparation of client settlement distributions, closing statements nor related communication with clients.</div>
+        </td>
+      </tr>
+
+      <tr data-cat="admin" data-search="026 admin checking emails docufree inbox processing">
+        <td class="num-col">026</td>
+        <td><span class="code-pill">SLS_Paralegal_026</span></td>
+        <td>
+          <div class="task-name">Admin Checking Emails &amp; Docufree <span class="cat-tag cat-admin">Admin</span></div>
+          <div class="when-text">Reviewing inbox, checking / processing Docufree.</div>
+        </td>
+      </tr>
+
+      <tr data-cat="admin" data-search="027 admin monthly meeting training internal org meetings tort">
+        <td class="num-col">027</td>
+        <td><span class="code-pill">SLS_Paralegal_027</span></td>
+        <td>
+          <div class="task-name">Admin Monthly Meeting/Training <span class="cat-tag cat-admin">Admin</span></div>
+          <div class="when-text">Attending internal M&amp;M meetings that are not directly associated with your assigned Tort, such as org meetings and trainings.</div>
+        </td>
+      </tr>
+
+      <tr data-cat="admin" data-search="028 admin organizing prioritizing tasks bill4time to-do lists planning day">
+        <td class="num-col">028</td>
+        <td><span class="code-pill">SLS_Paralegal_028</span></td>
+        <td>
+          <div class="task-name">Admin Organizing/Prioritizing Tasks <span class="cat-tag cat-admin">Admin</span></div>
+          <div class="when-text">Planning your day, entering time in Bill4Time, prioritizing tasks, preparing to-do lists, etc.</div>
+        </td>
+      </tr>
+
+      <tr data-cat="admin" data-search="029 admin tech issues it remote desktop log-in access litify bugs">
+        <td class="num-col">029</td>
+        <td><span class="code-pill">SLS_Paralegal_029</span></td>
+        <td>
+          <div class="task-name">Admin Tech Issues <span class="cat-tag cat-admin">Admin</span></div>
+          <div class="when-text">Time spent dealing with M&amp;M IT to resolve tech issues, e.g. related to remote desktop, log-in access, Litify bugs, etc.</div>
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+  <div class="no-results" id="noResults">No codes match your search. Try different keywords.</div>
+</div>
+
+<script>
+  let activeCat = 'all';
+
+  function filterCat(btn, cat) {
+    activeCat = cat;
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    filterTable();
+  }
+
+  function filterTable() {
+    const q = document.getElementById('searchInput').value.toLowerCase().trim();
+    const rows = document.querySelectorAll('#codeTable tbody tr');
+    let visible = 0;
+
+    rows.forEach(row => {
+      const cat = row.dataset.cat;
+      const searchText = (row.dataset.search + ' ' + row.textContent).toLowerCase();
+      const catMatch = activeCat === 'all' || cat === activeCat;
+      const searchMatch = q === '' || searchText.includes(q);
+
+      if (catMatch && searchMatch) {
+        row.classList.remove('hidden');
+        visible++;
+      } else {
+        row.classList.add('hidden');
+      }
+    });
+
+    document.getElementById('resultCount').textContent = visible + (visible === 1 ? ' code' : ' codes');
+    document.getElementById('noResults').style.display = visible === 0 ? 'block' : 'none';
+  }
+</script>
+</body>
+</html>
